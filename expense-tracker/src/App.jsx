@@ -28,6 +28,16 @@ function ExpenseForm({ onAdd }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+if (!form.title.trim()) {
+  alert("Please enter an expense name.");
+  return;
+}
+
+if (!/^[A-Za-z ]+$/.test(form.title.trim())) {
+  alert("Expense name must contain only letters and spaces.");
+  return;
+}
+
     onAdd({
       ...form,
       id: Date.now(),
@@ -51,6 +61,7 @@ function ExpenseForm({ onAdd }) {
         </div>
         <span className="heading-icon">＋</span>
       </div>
+
 
       <form onSubmit={handleSubmit} className="expense-form">
         <label>
